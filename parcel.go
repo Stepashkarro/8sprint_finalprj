@@ -63,14 +63,14 @@ func (s ParcelStore) SetStatus(number int, status string) error {
 }
 
 func (s ParcelStore) SetAddress(number int, address string) error {
-	// Меняем адрес только если статус "registered"
+	// меняем адрес только если статус "registered"
 	_, err := s.db.Exec("UPDATE parcel SET address = ? WHERE number = ? AND status = ?",
 		address, number, ParcelStatusRegistered)
 	return err
 }
 
 func (s ParcelStore) Delete(number int) error {
-	// Удаляем только если статус "registered"
+	// удаляем только если статус "registered"
 	_, err := s.db.Exec("DELETE FROM parcel WHERE number = ? AND status = ?", number, ParcelStatusRegistered)
 	return err
 }

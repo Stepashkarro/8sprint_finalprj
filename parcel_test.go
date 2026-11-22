@@ -8,7 +8,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	_ "modernc.org/sqlite" // Важно для подключения драйвера SQLite
+	_ "modernc.org/sqlite"
 )
 
 var (
@@ -42,7 +42,7 @@ func TestAddGetDelete(t *testing.T) {
 	stored, err := store.Get(id)
 	require.NoError(t, err)
 
-	// Записываем ID в объект, чтобы сравнить целиком
+	// записываем ID в объект, чтобы сравнить целиком
 	parcel.Number = id
 	assert.Equal(t, parcel, stored)
 
@@ -139,7 +139,7 @@ func TestGetByClient(t *testing.T) {
 	// check
 	for _, parcel := range storedParcels {
 		expected, ok := parcelMap[parcel.Number]
-		assert.True(t, ok) // Проверяем, что такой ID вообще есть в мапе
+		assert.True(t, ok) // проверяем, что такой ID вообще есть в мапе
 		assert.Equal(t, expected, parcel)
 	}
 }
